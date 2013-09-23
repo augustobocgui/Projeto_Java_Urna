@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Vencedor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6316d69-0bdf-47e6-869e-e60be66f72a2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     apuracao.`id` AS apuracao_id,
+     apuracao.`contagem` AS apuracao_contagem,
+     candidato.`id` AS candidato_id,
+     candidato.`nome` AS candidato_nome,
+     candidato.`partido` AS candidato_partido,
+     candidato.`foto` AS candidato_foto
+FROM
+     `candidato` candidato INNER JOIN `apuracao` apuracao ON candidato.`id` = apuracao.`id`
+ORDER BY
+     contagem DESC]]>
+	</queryString>
+	<field name="apuracao_id" class="java.lang.Integer"/>
+	<field name="apuracao_contagem" class="java.lang.Integer"/>
+	<field name="candidato_id" class="java.lang.Integer"/>
+	<field name="candidato_nome" class="java.lang.String"/>
+	<field name="candidato_partido" class="java.lang.String"/>
+	<field name="candidato_foto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement uuid="169a0b42-4380-4370-b1d9-ab613cfd2e16" mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000099"/>
+				<staticText>
+					<reportElement uuid="ea7d0b59-34d6-45de-99e6-1a36318f1c4d" style="Title" x="21" y="0" width="349" height="66"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Eleito]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="8614ecb9-3359-45e5-97ec-8e212a94004f" style="SubTitle" x="157" y="66" width="249" height="29" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Eleições - 2013]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement uuid="67882789-339b-483f-91a1-6bffab28f1be" mode="Opaque" x="0" y="100" width="553" height="32" forecolor="#000000" backcolor="#FFFF33"/>
+				<textField pattern="dd/MM/yyyy HH.mm.ss">
+					<reportElement uuid="c85a0371-8216-4f35-bcfc-e754bd71dbc4" x="307" y="12" width="144" height="20" forecolor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="70248dc1-7464-4cbc-84f2-dc9b086343ed" x="219" y="12" width="88" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Encerrado em:]]></text>
+				</staticText>
+			</frame>
+			<image>
+				<reportElement uuid="58273817-2a6e-439a-8a1d-b2463a43076e" x="451" y="0" width="106" height="95"/>
+				<imageExpression><![CDATA["..\\relatorios\\relatorio.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e79bc15a-725d-47ec-a0a4-9e9fb0f47cd3" x="0" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="facb3ce5-65b5-40a6-bf36-f2c159ed6641" x="100" y="0" width="173" height="20"/>
+				<box>
+					<topPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b40fcddf-0a5d-4abf-be5d-1636c6238219" x="373" y="0" width="182" height="20"/>
+				<box>
+					<topPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL DE VOTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0276e246-280c-4b5a-b8d8-9b4c1502cf7f" x="273" y="0" width="100" height="20"/>
+				<box>
+					<topPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Partido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="165" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="2d011211-c6eb-40c9-b850-60972860a88e" mode="Transparent" x="2" y="0" width="555" height="165"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="257e163a-ea0c-4102-b6bf-d4d9eb887760" x="0" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{candidato_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="568b27d4-9cef-4aa8-952a-f14c6c9bbd44" x="100" y="0" width="173" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{candidato_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d6958799-3d13-413e-94d3-4125dfca0db3" x="273" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{candidato_partido}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="fbf2b001-0cf5-4b78-9650-dcc56e0e6aa2" x="454" y="1" width="100" height="150">
+					<printWhenExpression><![CDATA[new Boolean($F{candidato_foto}.equals("andressa.jpg"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["..\\relatorios\\andressa.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="f240800a-1a92-4085-9875-b177cc3c5244" x="454" y="1" width="100" height="150">
+					<printWhenExpression><![CDATA[new Boolean($F{candidato_foto}.equals("antonio.jpg"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["..\\relatorios\\antonio.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="c456cf6e-c709-4e39-b45c-02ee45463817" x="454" y="1" width="100" height="150">
+					<printWhenExpression><![CDATA[new Boolean($F{candidato_foto}.equals("flavio.jpg"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["..\\relatorios\\flavio.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="cb41ba31-4f82-43b9-b43f-bddb2dea71f3" x="454" y="1" width="100" height="150">
+					<printWhenExpression><![CDATA[new Boolean($F{candidato_foto}.equals("murilo.jpg"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["..\\relatorios\\murilo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="2a092a6d-3fc7-4d1d-9125-47e07090bba7" x="454" y="1" width="100" height="150">
+					<printWhenExpression><![CDATA[new Boolean($F{candidato_foto}.equals("weslao.jpg"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["..\\relatorios\\weslao.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="74c65d81-f9d7-4a7a-a6a4-95374e40cd4a" x="454" y="1" width="100" height="150">
+					<printWhenExpression><![CDATA[new Boolean($F{candidato_foto}.equals("nulo.jpg"))]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["..\\relatorios\\nulo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="d77c2b66-0a0a-4946-879b-a53aa888611c" mode="Opaque" x="373" y="1" width="78" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{apuracao_contagem}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="724dd791-8d08-4ddc-b479-7b4e34d7dcc1" mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="f02b1f5b-39e6-4353-a653-1a1e16294fad" style="Column header" x="493" y="0" width="60" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="68e62861-cced-45fe-ad36-65f805194437" style="Column header" x="392" y="0" width="101" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="0a2a08ab-979d-4037-8b80-8091444f039a" style="Column header" x="21" y="1" width="178" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
